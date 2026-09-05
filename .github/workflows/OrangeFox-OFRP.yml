@@ -26,7 +26,7 @@ on:
       DEVICE_PATH:
         description: 'Specify your Device Path (Check the DEVICE_PATH in BoardConfig.mk)' # As is, just like your DEVICE_PATH in your BoardConfig.mk
         required: true
-        default: 'device/device`s_company/Codename'
+        default: 'device/infinix/X6873'
       BUILD_TARGET:
         description: 'Specify your Build Target' # The image suffix will be added later in build step.
         required: true
@@ -44,7 +44,7 @@ on:
       LDCHECKPATH:
         description: 'Path of blobs to check' # Use it know what kind of dependencies your missing for decryption blobs.
         required: true
-        default: 'system/bin/qseecomd'
+        default: 'vendor/lib64/vendor.trustonic.tee@1.1.so'
 
 jobs:
   build:
