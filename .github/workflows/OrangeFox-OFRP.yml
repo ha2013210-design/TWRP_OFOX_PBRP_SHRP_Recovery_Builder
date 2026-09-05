@@ -35,7 +35,7 @@ on:
         options:
         - boot
         - recovery
-        - vendorboot
+        - vendor_boot
       LDCHECK:
         description: 'Use LDCHECK'
         required: false
