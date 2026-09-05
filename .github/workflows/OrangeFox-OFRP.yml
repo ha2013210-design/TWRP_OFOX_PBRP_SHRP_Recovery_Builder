@@ -98,6 +98,8 @@ jobs:
         git clone ${{ inputs.DEVICE_TREE }} -b ${{ inputs.DEVICE_TREE_BRANCH }} ./${{ inputs.DEVICE_PATH }}
         cd ${{ inputs.DEVICE_PATH }}
         echo "COMMIT_ID=$(git rev-parse HEAD)" >> $GITHUB_ENV
+        cd ${{ env.ORANGEFOX_ROOT }}
+        git clone https://github.com/kaminarich/android_kernel_infinix_X6873 -b lineage-24.0 ./${{ inputs.DEVICE_PATH }}-kernel
 
     - name: Building OrangeFox
       run: |
