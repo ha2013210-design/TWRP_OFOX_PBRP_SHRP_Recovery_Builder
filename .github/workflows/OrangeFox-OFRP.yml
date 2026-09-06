@@ -110,8 +110,11 @@ jobs:
         sed -i 's/return sandboxConfig\.working/return false/g' build/soong/ui/build/sandbox_linux.go
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
+        export BUILD_BROKEN_DUP_RULES=true
+        export BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES=true
+        export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
         set -e
-        lunch twrp_${{ inputs.DEVICE_NAME }}-eng && make clean && mka adbd ${{ inputs.BUILD_TARGET }}image
+        lunch twrp_${{ inputs.DEVICE_NAME }}-eng && make clean && mka clobber ${{ inputs.BUILD_TARGET }}image
         popd
 
     - name: Set Build Date # Build date in UTC
@@ -121,7 +124,7 @@ jobs:
     - name: Check if the recovery exists # It makes the recovery.img and renames it to Orangefox*.img but the OG should also work
       if: always()
       run: |
-        img_file=$(find "${{ env.OUTPUT_DIR }}" -name "*.img" -print -quit)
+        img_file=$(find "${{ env.OUTPUT_DIR }}" -name "orangefox_X6873*.img" -print -quit)
         zip_file=$(find "${{ env.OUTPUT_DIR }}" -name "OrangeFox*.zip" -print -quit)
         if [ -f "$img_file" ]; then
             echo "CHECK_IMG_IS_OK=true" >> $GITHUB_ENV
