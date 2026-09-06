@@ -124,7 +124,7 @@ jobs:
     - name: Check if the recovery exists # It makes the recovery.img and renames it to Orangefox*.img but the OG should also work
       if: always()
       run: |
-        img_file=$(find "${{ env.OUTPUT_DIR }}" -name "orangefox_X6873*.img" -print -quit)
+        img_file=$(find "${{ env.OUTPUT_DIR }}" -name "*.img" -print -quit)
         zip_file=$(find "${{ env.OUTPUT_DIR }}" -name "OrangeFox*.zip" -print -quit)
         if [ -f "$img_file" ]; then
             echo "CHECK_IMG_IS_OK=true" >> $GITHUB_ENV
