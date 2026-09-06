@@ -114,8 +114,10 @@ jobs:
         export BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES=true
         export BUILD_BROKEN_MISSING_REQUIRED_MODULES=true
         set -e
-        lunch twrp_${{ inputs.DEVICE_NAME }}-eng && make clean && mka clobber ${{ inputs.BUILD_TARGET }}image
-        popd
+        lunch twrp_${{ inputs.DEVICE_NAME }}-eng
+        make clean
+        mka ${{ inputs.BUILD_TARGET }}image
+
 
     - name: Set Build Date # Build date in UTC
       run: |
